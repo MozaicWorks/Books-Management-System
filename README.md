@@ -1,37 +1,34 @@
-# Library management system
-#### Based on Spring+Spring MVC (built in Maven way)
-[![Build Status](https://travis-ci.org/withstars/Books-Management-System.svg?branch=master)](https://travis-ci.org/withstars/Books-Management-System)
-[![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/withstars/Books-Management-System)
-### Project Description
+# Example of architectural tests
 
-The book management system is based on spring, spring mvc, and the database is mysql. Bootstrap is used on the front end.
+This is an example of architectural tests. The source code is slightly adapted from [https://github.com/withstars/Books-Management-System](https://github.com/withstars/Books-Management-System), a Spring MVC web application used for managing books. The source code is less important in this case; the examples are focused on how to check internal architectural rules.
 
-### System functions
+## What are architectural tests?
 
-The system realizes functions such as login for readers and administrators, addition, deletion and modification of books, reader addition, deletion, modification, checking, borrowing and returning books, password modification, loss reporting of card numbers, and overdue reminders.
+Architectural tests are a relatively new type of tests that we can write to automatically check architectural constraints such as:
+
+* classes from a specific package should have names based on specific rules
+* classes annotated with a certain annotation should only have final fields
+* classes from a specific package should never call classes from another specific package
+
+## Technology
+
+The source code uses Spring MVC and bootstrap. The interface language is Chinese.
+
+For the architectural tests the library [archunit](https://www.archunit.org/) is used
 
 ### How to use
-```
-$ git clone https://github.com/withstars/Books-Management-System
 
-$ cd Books-Management-System
+* clone this repo
+* run `mvn clean compile`
+* run `mvn clean package`
+* run `mvn clean install`
+* to run the app, run `mvn jetty:run` and navigate to [http://localhost:8080](http://localhost:8080)
+* to run the architectural tests, run `mvn test`
 
-$ mvn clean compile
+Some of the tests will be failing on purpose, to demonstrate violations of the architectural rules.
 
-$ mvn clean package
+All architectural tests are in the folder `src/test/java/archtests/`.
 
-$ mvn clean install
+Play with the code as you want. Have fun!
 
-$ mvn jetty:run
-
-http://localhost:9000
-```
-
-### Screenshot of this project
-
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/1.PNG">
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/2.PNG">
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/3.PNG">
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/4.PNG">
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/5.PNG">
-<img src="https://github.com/ValueStar/Books-Management-System/blob/master/preview/6.PNG">
+If you have any questions, please contact [alex.bolboaca@mozaicworks.com](mailto:alex.bolboaca@mozaicworks.com).

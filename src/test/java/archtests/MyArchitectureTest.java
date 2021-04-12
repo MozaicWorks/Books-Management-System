@@ -86,5 +86,14 @@ public class MyArchitectureTest {
 		rule.check(importedClasses);
 	}
 
+	@Test
+	public void ServiceClassesShouldBeProperlyAnnotated(){
+		JavaClasses importedClasses = new ClassFileImporter().importPackages("..services..");
+
+		ArchRule rule = ArchRuleDefinition.classes().should().beAnnotatedWith("Service");
+
+		rule.check(importedClasses);
+	}
+
 }
 

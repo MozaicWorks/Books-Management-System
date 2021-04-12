@@ -66,5 +66,15 @@ public class MyArchitectureTest {
 		rule.check(importedClasses);
 	}
 
+	@Test
+	public void DaoClassesShouldNotBeCalledFromWeb() {
+		JavaClasses importedClasses = new ClassFileImporter().importPackages("com.book.web");
+
+		ArchRule rule = ArchRuleDefinition.noClasses()
+			.should().accessClassesThat()
+			.resideInAnyPackage("..dao..");
+
+		rule.check(importedClasses);
+	}
 }
 

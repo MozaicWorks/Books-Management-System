@@ -7,6 +7,8 @@ import com.tngtech.archunit.lang.syntax.ArchRuleDefinition;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
 
+import java.io.Serializable;
+
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -42,4 +44,15 @@ public class MyArchitectureTest {
 
 		rule.check(importedClasses);
 	}
+
+	@Test
+	@Disabled
+	public void DomainClassesShouldBeSerializable() {
+		JavaClasses importedClasses = new ClassFileImporter().importPackages("com.book.domain");
+
+		ArchRule rule = classes().should().implement(Serializable.class);
+
+		rule.check(importedClasses);
+	}
 }
+

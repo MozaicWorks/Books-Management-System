@@ -54,5 +54,17 @@ public class MyArchitectureTest {
 
 		rule.check(importedClasses);
 	}
+
+	@Test
+	public void DomainClassesShouldNotCallOtherClasses() {
+		JavaClasses importedClasses = new ClassFileImporter().importPackages("com.book.domain");
+
+		ArchRule rule = ArchRuleDefinition.noClasses()
+			.should().accessClassesThat()
+			.resideInAnyPackage("..service..", "..web..", "..dao..");
+
+		rule.check(importedClasses);
+	}
+
 }
 

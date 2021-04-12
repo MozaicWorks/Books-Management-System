@@ -31,12 +31,11 @@ public class MyArchitectureTest {
 	}
 
 	@Test
-	public void DomainClassesShouldOnlyHaveGettersAndSetters() {
+	public void DomainClassesShouldOnlyHaveGettersAndSettersAndToString() {
 		JavaClasses importedClasses = new ClassFileImporter().importPackages("com.book.domain");
 
 		ArchRule rule = ArchRuleDefinition.methods()
 			.that().arePublic()
-			.and().areDeclaredInClassesThat().resideInAPackage("..domain..")
 			.should().haveNameStartingWith("get")
 			.orShould().haveNameStartingWith("set")
 			.orShould().haveName("toString");
